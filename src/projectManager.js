@@ -4,13 +4,17 @@ function createTodoItem(title, description, dueDate, priority, notes = '', check
         description,
         dueDate,
         priority,
-        notes,
     };
 }
 
 function createProjectManager() {
+    let projectCounter = 1;
+
     const projectsFolder = {
-        'default': [],
+        'default-0': { 
+            name: 'default',
+            todos: [],
+        },
     }
 
     return {
@@ -24,7 +28,7 @@ function createProjectManager() {
             }
         },
 
-        addTodo(project, todo) {
+        addTodoToProject(project, todo) {
             if(project) {
                 projectsFolder[project].push(todo);
             }
