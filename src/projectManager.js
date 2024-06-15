@@ -35,3 +35,5 @@ function createProjectManager() {
         }
     }
 }
+
+export { createProjectManager, createTodoItem }
