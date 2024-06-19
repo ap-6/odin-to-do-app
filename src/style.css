@@ -48,6 +48,12 @@ body {
     background-color: #473C49;
     padding: 10px;
     border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.todo-element:hover {
+    background-color: #594c5c;
+    transform: scale(1.005);
 }
 
 #todo-container {
