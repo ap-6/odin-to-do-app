@@ -82,3 +82,7 @@ body {
     margin: 0px;
     padding: 0px;
 }
+
+.todo-card-icon {
+    height: 30px;
+}

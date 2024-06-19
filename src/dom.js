@@ -1,3 +1,5 @@
+import deleteIcon from './assets/trash-can-outline-white.png';
+
 const sidebar = document.getElementById('sidebar');
 const main = document.getElementById('main');
 const projectsContainer = document.getElementById('projects-container');
@@ -37,10 +39,10 @@ function renderTodos(projectName, projectsFolder) {
         title.classList.add('todo-title');
         
         const description = document.createElement('div');
-        description.textContent = 'Description: ' + todoObject.description;
+        description.textContent = todoObject.description;
         
         const dueDate = document.createElement('div');
-        dueDate.textContent = 'Due date: ' + todoObject.dueDate;
+        dueDate.textContent = todoObject.dueDate;
 
         switch(todoObject.priority) {
             case 'low':
@@ -56,9 +58,18 @@ function renderTodos(projectName, projectsFolder) {
                 break;
         }
 
+        const deleteIconElement = document.createElement('img');
+        deleteIconElement.src = deleteIcon;
+        deleteIconElement.classList.add('todo-card-icon');
+        deleteIconElement.addEventListener('click', () => {
+
+        })
+
         todoElement.appendChild(title);
         todoElement.appendChild(description);
         todoElement.appendChild(dueDate);
+        todoElement.appendChild(todoId);
+        todoElement.appendChild(deleteIconElement);
 
         todoElement.classList.add('todo-element');
 

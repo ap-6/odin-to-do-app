@@ -1,9 +1,12 @@
+let todoCounter = 0;
+
 function createTodoItem(title, description, dueDate, priority, notes = '', checklist = []) {
     return {
         title,
         description,
         dueDate,
         priority,
+        todoId: todoCounter++,
     };
 }
 
@@ -12,7 +15,7 @@ function createProjectManager() {
 
     const projectsFolder = {
         'default': { 
-            id: 0,
+            projectId: 0,
             todos: [],
         },
     }
@@ -25,7 +28,7 @@ function createProjectManager() {
         addProject(name) {
             if(!projectsFolder[name]) {
                 projectsFolder[name] = {
-                    id: projectCounter,
+                    projectId: projectCounter,
                     todos: []
                 };
                 projectCounter++;
@@ -42,6 +45,10 @@ function createProjectManager() {
             if (projectsFolder[projectName]) {
                 return projectsFolder[projectName].todos;
             }
+        },
+
+        deleteTodoFromProject(projectName) {
+
         }
     }
 }
