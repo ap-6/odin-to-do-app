@@ -68,7 +68,6 @@ function renderTodos(projectName, projectsFolder) {
         todoElement.appendChild(title);
         todoElement.appendChild(description);
         todoElement.appendChild(dueDate);
-        todoElement.appendChild(todoId);
         todoElement.appendChild(deleteIconElement);
 
         todoElement.classList.add('todo-element');
