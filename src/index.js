@@ -3,7 +3,7 @@ import './style.css';
 import { createProjectManager, createTodoItem } from './projectManager';
 import { renderProjects, renderTodos } from './dom';
 
-const projectManager = createProjectManager();
+let projectManager = createProjectManager();
 projectManager.addProject('work');
 projectManager.addProject('personal');
 
@@ -22,5 +22,5 @@ projectManager.addTodoToProject('default', todo4);
 projectManager.addTodoToProject('default', todo5);
 projectManager.addTodoToProject('default', todo6);
 
-renderProjects(projectManager.getProjectsFolder());
-renderTodos('default', projectManager.getProjectsFolder());
+renderProjects(projectManager);
+renderTodos('default', projectManager);

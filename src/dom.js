@@ -6,17 +6,18 @@ const projectsContainer = document.getElementById('projects-container');
 const todoContainer = document.getElementById('todo-container');
 const todoContainerHeader = document.getElementById('todo-container-header');
 
-function renderProjects(projectsFolder) {
+function renderProjects(projectManager) {
     while (projectsContainer.firstChild) {
         projectsContainer.removeChild(projectsContainer.firstChild);
     }
+    let projectsFolder = projectManager.getProjectsFolder();
 
     Object.keys(projectsFolder).forEach(projectName => {
         const projectElement = document.createElement('div');
         projectElement.textContent = projectName;
 
         projectElement.addEventListener('click', () => {
-            renderTodos(projectName, projectsFolder);
+            renderTodos(projectName, projectManager);
         })
 
         projectElement.classList.add('project-name');
@@ -25,11 +26,13 @@ function renderProjects(projectsFolder) {
     })
 }
 
-function renderTodos(projectName, projectsFolder) {
+function renderTodos(projectName, projectManager) {
     while(todoContainer.firstChild) {
         todoContainer.removeChild(todoContainer.firstChild);
     }
     todoContainerHeader.textContent = projectName;
+
+    let projectsFolder = projectManager.getProjectsFolder();
 
     projectsFolder[projectName].todos.forEach(todoObject => {
         const todoElement = document.createElement('div');
@@ -61,9 +64,6 @@ function renderTodos(projectName, projectsFolder) {
         const deleteIconElement = document.createElement('img');
         deleteIconElement.src = deleteIcon;
         deleteIconElement.classList.add('todo-card-icon');
-        deleteIconElement.addEventListener('click', () => {
-
-        })
 
         todoElement.appendChild(title);
         todoElement.appendChild(description);
@@ -73,6 +73,11 @@ function renderTodos(projectName, projectsFolder) {
         todoElement.classList.add('todo-element');
 
         todoContainer.appendChild(todoElement);
+
+        deleteIconElement.addEventListener('click', () => {
+            projectManager.deleteTodoFromProject(projectName, todoObject.todoId);
+            renderTodos(projectName, projectManager);
+        });
     });
 }
 

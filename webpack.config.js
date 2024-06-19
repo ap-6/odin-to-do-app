@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-  entry: './src/index.js', // Entry point for your application
+  entry: './src/index.js', 
   output: {
     filename: 'bundle.js', // Output bundle file
     path: path.resolve(__dirname, 'dist'), // Output directory
@@ -11,6 +11,7 @@ module.exports = {
   devServer: {
     static: './dist',
   },
+  devtool: 'source-map', 
   module: {
     rules: [
       {

@@ -47,8 +47,9 @@ function createProjectManager() {
             }
         },
 
-        deleteTodoFromProject(projectName) {
-
+        deleteTodoFromProject(projectName, todoId) {
+            projectsFolder[projectName].todos = projectsFolder[projectName].todos
+                                                    .filter(todo => todo.todoId !== todoId);
         }
     }
 }
