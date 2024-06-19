@@ -12,6 +12,10 @@ function renderProjects(projectsFolder) {
         const projectElement = document.createElement('div');
         projectElement.textContent = projectName;
 
+        projectElement.addEventListener('click', () => {
+            renderTodos(projectName, projectsFolder);
+        })
+
         projectsContainer.appendChild(projectElement);
     })
 }
@@ -21,7 +25,7 @@ function renderTodos(projectName, projectsFolder) {
         todoContainer.removeChild(todoContainer.firstChild);
     }
 
-    projectsFolder[projectName].forEach(todoObject => {
+    projectsFolder[projectName].todos.forEach(todoObject => {
         const todoElement = document.createElement('div');
         
         const title = document.createElement('div');

@@ -11,8 +11,8 @@ function createProjectManager() {
     let projectCounter = 1;
 
     const projectsFolder = {
-        'default-0': { 
-            name: 'default',
+        'default': { 
+            id: 0,
             todos: [],
         },
     }
@@ -24,7 +24,11 @@ function createProjectManager() {
 
         addProject(name) {
             if(!projectsFolder[name]) {
-                projectsFolder[name] = [];
+                projectsFolder[name] = {
+                    id: projectCounter,
+                    todos: []
+                };
+                projectCounter++;
             }
         },
 
