@@ -1,2 +1,0 @@
-switch each todo project to have an object instead of array 
-and each object has the project's name

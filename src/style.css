@@ -1,3 +1,10 @@
+:root {
+    --priority-low: green;
+    --priority-medium: orange;
+    --priority-high: red;
+    --priority-width: 8px;
+}
+
 html, body {
     height: 100%;
     width: 100%;
@@ -29,4 +36,43 @@ body {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background-color: #151116;
+
+    padding: 30px;
+}
+
+.project-name:hover {
+    text-decoration: underline;
+}
+
+.todo-element {
+    background-color: #473C49;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+#todo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.todo-priority-low {
+    border-left: var(--priority-width) solid var(--priority-low);
+}
+
+.todo-priority-medium {
+    border-left: var(--priority-width) solid var(--priority-medium);
+}
+.todo-priority-high {
+    border-left: var(--priority-width) solid var(--priority-high);
+}
+
+.todo-title {
+    padding: 10px 0px;
+    margin: 0px;
+}
+
+.todo-container-header {
+    margin: 0px;
+    padding: 0px;
 }

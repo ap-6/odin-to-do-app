@@ -2,6 +2,7 @@ const sidebar = document.getElementById('sidebar');
 const main = document.getElementById('main');
 const projectsContainer = document.getElementById('projects-container');
 const todoContainer = document.getElementById('todo-container');
+const todoContainerHeader = document.getElementById('todo-container-header');
 
 function renderProjects(projectsFolder) {
     while (projectsContainer.firstChild) {
@@ -16,6 +17,8 @@ function renderProjects(projectsFolder) {
             renderTodos(projectName, projectsFolder);
         })
 
+        projectElement.classList.add('project-name');
+
         projectsContainer.appendChild(projectElement);
     })
 }
@@ -24,26 +27,40 @@ function renderTodos(projectName, projectsFolder) {
     while(todoContainer.firstChild) {
         todoContainer.removeChild(todoContainer.firstChild);
     }
+    todoContainerHeader.textContent = projectName;
 
     projectsFolder[projectName].todos.forEach(todoObject => {
         const todoElement = document.createElement('div');
         
-        const title = document.createElement('div');
-        title.textContent = 'Title: ' + todoObject.title;
+        const title = document.createElement('h2');
+        title.textContent = todoObject.title;
+        title.classList.add('todo-title');
         
         const description = document.createElement('div');
         description.textContent = 'Description: ' + todoObject.description;
         
         const dueDate = document.createElement('div');
         dueDate.textContent = 'Due date: ' + todoObject.dueDate;
-        
-        const priority = document.createElement('div');
-        priority.textContent = 'Priority: ' + todoObject.priority;
+
+        switch(todoObject.priority) {
+            case 'low':
+                todoElement.classList.add('todo-priority-low');
+                break;
+            
+            case 'medium':
+                todoElement.classList.add('todo-priority-medium');
+                break;
+
+            case 'high':
+                todoElement.classList.add('todo-priority-high');
+                break;
+        }
 
         todoElement.appendChild(title);
         todoElement.appendChild(description);
         todoElement.appendChild(dueDate);
-        todoElement.appendChild(priority);
+
+        todoElement.classList.add('todo-element');
 
         todoContainer.appendChild(todoElement);
     });
