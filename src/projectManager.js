@@ -32,14 +32,16 @@ function createProjectManager() {
             }
         },
 
-        addTodoToProject(project, todo) {
-            if(project) {
-                projectsFolder[project].push(todo);
+        addTodoToProject(projectName, todo) {
+            if(projectsFolder[projectName]) {
+                projectsFolder[projectName].todos.push(todo);
             }
         },
 
-        getTodos(project) {
-            return projectsFolder[project] ? projectsFolder[project] : [];
+        getTodos(projectName) {
+            if (projectsFolder[projectName]) {
+                return projectsFolder[projectName].todos;
+            }
         }
     }
 }
