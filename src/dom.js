@@ -34,20 +34,20 @@ function renderTodos(projectName, projectManager) {
 
     let projectsFolder = projectManager.getProjectsFolder();
 
-    projectsFolder[projectName].todos.forEach(todoObject => {
+    projectsFolder[projectName].todos.forEach(todoObj => {
         const todoElement = document.createElement('div');
         
         const title = document.createElement('h2');
-        title.textContent = todoObject.title;
+        title.textContent = todoObj.title;
         title.classList.add('todo-title');
         
         const description = document.createElement('div');
-        description.textContent = todoObject.description;
+        description.textContent = todoObj.description;
         
         const dueDate = document.createElement('div');
-        dueDate.textContent = todoObject.dueDate;
+        dueDate.textContent = 'Due: ' + todoObj.dueDate;
 
-        switch(todoObject.priority) {
+        switch(todoObj.priority) {
             case 'low':
                 todoElement.classList.add('todo-priority-low');
                 break;
@@ -61,24 +61,61 @@ function renderTodos(projectName, projectManager) {
                 break;
         }
 
-        const deleteIconElement = document.createElement('img');
-        deleteIconElement.src = deleteIcon;
-        deleteIconElement.classList.add('todo-card-icon');
-
         todoElement.appendChild(title);
         todoElement.appendChild(description);
         todoElement.appendChild(dueDate);
-        todoElement.appendChild(deleteIconElement);
+        addTodoDetailBtn(todoElement, todoObj);
+        addTodoDeleteBtn(todoElement, todoObj, projectManager);
 
         todoElement.classList.add('todo-element');
 
         todoContainer.appendChild(todoElement);
 
-        deleteIconElement.addEventListener('click', () => {
-            projectManager.deleteTodoFromProject(projectName, todoObject.todoId);
-            renderTodos(projectName, projectManager);
-        });
+
     });
 }
+
+function addTodoDeleteBtn(todoElement, todoObj, projectManager) {
+    const deleteIconElement = document.createElement('img');
+    deleteIconElement.src = deleteIcon;
+    deleteIconElement.classList.add('todo-card-icon');
+
+    deleteIconElement.addEventListener('click', () => {
+        projectManager.deleteTodoFromProject(projectName, todoObj.todoId);
+        renderTodos(projectName, projectManager);
+    });
+
+    todoElement.appendChild(deleteIconElement);
+}
+
+function showModal(todoObj) {
+    const modal = document.getElementById("todo-modal");
+    document.getElementById("modal-title").textContent = todoObj.title;
+    document.getElementById("modal-description").textContent = todoObj.description;
+    document.getElementById("modal-dueDate").textContent = "Due Date: " + todoObj.dueDate;
+    document.getElementById("modal-priority").textContent = "Priority: " + todoObj.priority;
+    modal.style.display = "block";
+
+    const closeModal = () => {
+        modal.style.display = "none";
+    };
+
+    document.getElementsByClassName("close")[0].onclick = closeModal;
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    };
+}
+
+function addTodoDetailBtn(todoElement, todoObj) {
+    const detailsBtn = document.createElement('btn');
+    detailsBtn.textContent = 'Details';
+    detailsBtn.classList.add('details-btn');
+
+    detailsBtn.addEventListener('click', () => showModal(todoObj));
+    todoElement.appendChild(detailsBtn);
+}
+
 
 export { renderProjects, renderTodos };
