@@ -6,6 +6,9 @@
 
     --styled-white: #EDECEE;
     --styled-dark: #211D25;
+
+    --delete-icon-size: 30px;
+    --delete-icon-wrapper-size: 30px;
 }
 
 html, body {
@@ -88,12 +91,32 @@ body {
     padding: 0px;
 }
 
-.todo-card-icon {
-    height: 30px;
+.todo-delete-icon-wrapper {
+    border-radius: 50%;
+    height: var(--delete-icon-wrapper-size);
+    width: var(--delete-icon-wrapper-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+}
+
+.todo-delete-icon-wrapper:hover {
+    background-color: var(--styled-white);
+}
+
+.todo-delete-icon {
+    filter: brightness(0) saturate(100%) invert(86%) sepia(3%) saturate(78%) hue-rotate(227deg) brightness(113%) contrast(89%);
+}
+
+.todo-delete-icon:hover {
+    cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(11%) sepia(17%) saturate(518%) hue-rotate(227deg) brightness(93%) contrast(97%);
+
+    
 }
 
 .details-btn {
-    /* outline: 5px solid white; */
     border: 1px solid var(--styled-white);
     padding: 5px 10px;
     border-radius: 5px;
@@ -103,7 +126,7 @@ body {
 .details-btn:hover {
     background-color: var(--styled-white);
     color: var(--styled-dark);
-
+    cursor: pointer;
 }
 
 /* Modal styles */
@@ -133,7 +156,7 @@ body {
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
 }
   

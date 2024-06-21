@@ -1,4 +1,4 @@
-import deleteIcon from './assets/trash-can-outline-white.png';
+import deleteIcon from './assets/trash-can-outline.svg';
 
 const sidebar = document.getElementById('sidebar');
 const main = document.getElementById('main');
@@ -76,16 +76,20 @@ function renderTodos(projectName, projectManager) {
 }
 
 function addTodoDeleteBtn(todoElement, todoObj, projectManager) {
+    const deleteIconWrapper = document.createElement('div');
     const deleteIconElement = document.createElement('img');
     deleteIconElement.src = deleteIcon;
-    deleteIconElement.classList.add('todo-card-icon');
+    
+    deleteIconElement.classList.add('todo-delete-icon');
+    deleteIconWrapper.classList.add('todo-delete-icon-wrapper');
 
     deleteIconElement.addEventListener('click', () => {
         projectManager.deleteTodoFromProject(projectName, todoObj.todoId);
         renderTodos(projectName, projectManager);
     });
 
-    todoElement.appendChild(deleteIconElement);
+    deleteIconWrapper.appendChild(deleteIconElement);
+    todoElement.appendChild(deleteIconWrapper);
 }
 
 function showModal(todoObj) {
