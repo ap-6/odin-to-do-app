@@ -96,8 +96,8 @@ function showModal(todoObj) {
     const modal = document.getElementById("todo-modal");
     document.getElementById("modal-title").textContent = todoObj.title;
     document.getElementById("modal-description").textContent = todoObj.description;
-    document.getElementById("modal-dueDate").textContent = "Due Date: " + todoObj.dueDate;
-    document.getElementById("modal-priority").textContent = "Priority: " + todoObj.priority;
+    document.getElementById("modal-due-date").textContent = todoObj.dueDate;
+    document.getElementById("modal-priority").textContent = todoObj.priority;
     modal.style.display = "block";
 
     const closeModal = () => {
