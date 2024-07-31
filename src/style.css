@@ -91,6 +91,8 @@ body {
     padding: 0px;
 }
 
+/* Delete button */
+
 .todo-delete-icon-wrapper {
     border-radius: 50%;
     height: var(--delete-icon-wrapper-size);
@@ -99,28 +101,35 @@ body {
     justify-content: center;
     align-items: center;
     padding: 4px;
+    display: inline-block;
+    transition: all 0.2s ease;
 }
 
 .todo-delete-icon-wrapper:hover {
     background-color: var(--styled-white);
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .todo-delete-icon {
+    transition: all 0.2s ease;
     filter: brightness(0) saturate(100%) invert(86%) sepia(3%) saturate(78%) hue-rotate(227deg) brightness(113%) contrast(89%);
 }
 
-.todo-delete-icon:hover {
+.todo-delete-icon-hover {
     cursor: pointer;
     filter: brightness(0) saturate(100%) invert(11%) sepia(17%) saturate(518%) hue-rotate(227deg) brightness(93%) contrast(97%);
-
-    
+    transition: all 0.2s ease;
 }
+
+/* Details button */
 
 .details-btn {
     border: 1px solid var(--styled-white);
     padding: 5px 10px;
     border-radius: 5px;
     transition: all 0.2s ease;
+    display: inline-block;
 }
 
 .details-btn:hover {
@@ -167,30 +176,6 @@ body {
     cursor: pointer;
 }
 
-/* #modal-category-container,
-#modal-info-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-/* #modal-category-container {
-    background-color: red;
-}
-#modal-info-container {
-    background-color: rgb(4, 0, 255);
-} */
-
-/* #modal-category-container p,
-#modal-info-container p {
-
-    /* background-color: rgb(4, 0, 255); */
-/* }
-
-#modal-joint-container {
-    display: flex;
-    gap: 20px;
-}  */
 
 #modal-joint-container {
     display: grid;

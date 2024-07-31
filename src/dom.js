@@ -7,26 +7,27 @@ const todoContainer = document.getElementById('todo-container');
 const todoContainerHeader = document.getElementById('todo-container-header');
 
 function renderProjects(projectManager) {
+    //refresh sidebar's project listing
     while (projectsContainer.firstChild) {
         projectsContainer.removeChild(projectsContainer.firstChild);
     }
     let projectsFolder = projectManager.getProjectsFolder();
 
+    //create element for each project
     Object.keys(projectsFolder).forEach(projectName => {
         const projectElement = document.createElement('div');
         projectElement.textContent = projectName;
-
+        projectElement.classList.add('project-name');
         projectElement.addEventListener('click', () => {
             renderTodos(projectName, projectManager);
         })
-
-        projectElement.classList.add('project-name');
 
         projectsContainer.appendChild(projectElement);
     })
 }
 
 function renderTodos(projectName, projectManager) {
+    //empty current listing of to-dos
     while(todoContainer.firstChild) {
         todoContainer.removeChild(todoContainer.firstChild);
     }
@@ -34,6 +35,7 @@ function renderTodos(projectName, projectManager) {
 
     let projectsFolder = projectManager.getProjectsFolder();
 
+    //create a container for each to-do and append
     projectsFolder[projectName].todos.forEach(todoObj => {
         const todoElement = document.createElement('div');
         
@@ -65,28 +67,30 @@ function renderTodos(projectName, projectManager) {
         todoElement.appendChild(description);
         todoElement.appendChild(dueDate);
         addTodoDetailBtn(todoElement, todoObj);
-        addTodoDeleteBtn(todoElement, todoObj, projectManager);
-
+        addTodoDeleteBtn(todoElement, todoObj, projectManager, projectName);
         todoElement.classList.add('todo-element');
 
         todoContainer.appendChild(todoElement);
-
-
     });
 }
 
-function addTodoDeleteBtn(todoElement, todoObj, projectManager) {
+function addTodoDeleteBtn(todoElement, todoObj, projectManager, projectName) {
     const deleteIconWrapper = document.createElement('div');
     const deleteIconElement = document.createElement('img');
     deleteIconElement.src = deleteIcon;
-    
     deleteIconElement.classList.add('todo-delete-icon');
     deleteIconWrapper.classList.add('todo-delete-icon-wrapper');
 
-    deleteIconElement.addEventListener('click', () => {
+    deleteIconWrapper.addEventListener('click', () => {
         projectManager.deleteTodoFromProject(projectName, todoObj.todoId);
         renderTodos(projectName, projectManager);
     });
+    deleteIconWrapper.addEventListener('mouseover', () => {
+        deleteIconElement.classList.add('todo-delete-icon-hover');
+    })
+    deleteIconWrapper.addEventListener('mouseout', () => {
+        deleteIconElement.classList.remove('todo-delete-icon-hover');
+    })
 
     deleteIconWrapper.appendChild(deleteIconElement);
     todoElement.appendChild(deleteIconWrapper);
