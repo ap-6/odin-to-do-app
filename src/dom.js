@@ -18,6 +18,7 @@ function renderProjects(projectManager) {
         const projectElement = document.createElement('div');
         projectElement.textContent = projectName;
         projectElement.classList.add('project-name');
+        projectElement.classList.add('text-medium');
         projectElement.addEventListener('click', () => {
             renderTodos(projectName, projectManager);
         })
@@ -69,6 +70,7 @@ function renderTodos(projectName, projectManager) {
         addTodoDetailBtn(todoElement, todoObj);
         addTodoDeleteBtn(todoElement, todoObj, projectManager, projectName);
         todoElement.classList.add('todo-element');
+        todoElement.classList.add('text-small');
 
         todoContainer.appendChild(todoElement);
     });

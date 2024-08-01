@@ -21,8 +21,27 @@ html, body {
 body {
     display: grid;
     grid-template-columns: 0.2fr 0.8fr;
-    grid-template-rows: 0.2fr 0.8fr;
+    grid-template-rows: 0.15fr 0.85fr;
     color: var(--styled-white);
+}
+
+#header {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.text-small {
+    font-size: 16px;
+}
+
+.text-medium {
+    font-size: 24px;
+}
+
+.text-large {
+    font-size: 32px;
 }
 
 #header {
@@ -35,9 +54,14 @@ body {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     background-color: #372F39;
+    padding: 20px;
+
+}
+
+#nav-grid {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    gap: 20px;
 }
 
 #main {
@@ -50,6 +74,24 @@ body {
 
 .project-name:hover {
     text-decoration: underline;
+    transform: scale(1.05);
+    transition: all 0.15s ease;
+}
+
+#projects-container {
+    padding-left: 15px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.project-name {
+    /* background-color: black; */
+    border-radius: 30px;
+    flex: 1;
+    padding: 10px;
+    width: auto;
 }
 
 .todo-element {
