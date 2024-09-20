@@ -93,23 +93,26 @@ body {
     width: auto;
 }
 
-.project-element-container {
-    border-radius: 30px;
-    flex: 1;
-    padding: 10px;
-    width: auto;
-}
-
 .todo-element {
     background-color: #473C49;
     padding: 10px;
     border-radius: 4px;
     transition: all 0.15s ease;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .todo-element:hover {
     background-color: #594c5c;
     transform: scale(1.002);
+}
+
+.todo-buttons-column {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
 }
 
 #todo-container {

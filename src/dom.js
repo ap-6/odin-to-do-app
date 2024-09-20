@@ -15,20 +15,25 @@ function renderProjects(projectManager) {
 
     //create element for each project
     Object.keys(projectsFolder).forEach(projectName => {
-        // const projectElementContainer = document.createElement('div');
         const projectElement = document.createElement('span');
         
         projectElement.textContent = projectName;
         projectElement.classList.add('project-name');
         projectElement.classList.add('text-medium');
         
-        // projectElementContainer.classList.add('project-element-container');
         projectElement.addEventListener('click', () => {
             renderTodos(projectName, projectManager);
         })
 
         projectsContainer.appendChild(projectElement);
-    })
+    });
+
+    //append "Add project" option
+    const createNewProjectElement = document.createElement('span');
+    createNewProjectElement.textContent = 'Add project';
+    createNewProjectElement.classList.add('project-name');
+    createNewProjectElement.classList.add('text-medium');
+    projectsContainer.appendChild(createNewProjectElement);
 }
 
 function renderTodos(projectName, projectManager) {
@@ -43,6 +48,8 @@ function renderTodos(projectName, projectManager) {
     //create a container for each to-do and append
     projectsFolder[projectName].todos.forEach(todoObj => {
         const todoElement = document.createElement('div');
+        const todoElementDetails = document.createElement('span');
+        const todoElementButtons = document.createElement('span');
         
         const title = document.createElement('h2');
         title.textContent = todoObj.title;
@@ -68,19 +75,26 @@ function renderTodos(projectName, projectManager) {
                 break;
         }
 
-        todoElement.appendChild(title);
-        todoElement.appendChild(description);
-        todoElement.appendChild(dueDate);
-        addTodoDetailBtn(todoElement, todoObj);
-        addTodoDeleteBtn(todoElement, todoObj, projectManager, projectName);
+        todoElementDetails.appendChild(title);
+        todoElementDetails.appendChild(description);
+        todoElementDetails.appendChild(dueDate);
+        addTodoDetailBtn(todoElementButtons, todoObj);
+        addTodoDeleteBtn(todoElementButtons, todoObj, projectManager, projectName);
         todoElement.classList.add('todo-element');
         todoElement.classList.add('text-small');
+        todoElementButtons.classList.add('todo-buttons-column')
+        todoElement.appendChild(todoElementDetails);
+        todoElement.appendChild(todoElementButtons);
 
         todoContainer.appendChild(todoElement);
     });
 }
 
-function addTodoDeleteBtn(todoElement, todoObj, projectManager, projectName) {
+function addTodoDeleteBtnOLD(todoElement, todoObj, projectManager, projectName) {
+    const deleteBtn = document.createElement('btn');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('details-btn');
+    
     const deleteIconWrapper = document.createElement('div');
     const deleteIconElement = document.createElement('img');
     deleteIconElement.src = deleteIcon;
@@ -100,6 +114,19 @@ function addTodoDeleteBtn(todoElement, todoObj, projectManager, projectName) {
 
     deleteIconWrapper.appendChild(deleteIconElement);
     todoElement.appendChild(deleteIconWrapper);
+}
+
+function addTodoDeleteBtn(todoElement, todoObj, projectManager, projectName) {
+    const deleteBtn = document.createElement('btn');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('details-btn');
+
+    deleteBtn.addEventListener('click', () => {
+        projectManager.deleteTodoFromProject(projectName, todoObj.todoId);
+        renderTodos(projectName, projectManager);
+    });
+
+    todoElement.appendChild(deleteBtn);
 }
 
 function showModal(todoObj) {
