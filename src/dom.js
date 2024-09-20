@@ -15,10 +15,14 @@ function renderProjects(projectManager) {
 
     //create element for each project
     Object.keys(projectsFolder).forEach(projectName => {
-        const projectElement = document.createElement('div');
+        // const projectElementContainer = document.createElement('div');
+        const projectElement = document.createElement('span');
+        
         projectElement.textContent = projectName;
         projectElement.classList.add('project-name');
         projectElement.classList.add('text-medium');
+        
+        // projectElementContainer.classList.add('project-element-container');
         projectElement.addEventListener('click', () => {
             renderTodos(projectName, projectManager);
         })

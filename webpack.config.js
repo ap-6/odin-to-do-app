@@ -38,4 +38,5 @@ module.exports = {
     }),
   ],
   mode: 'development', // Set the mode to development
+
 };
