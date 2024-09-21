@@ -41,8 +41,11 @@ function renderProjects(projectManager) {
             e.stopPropagation();
             projectManager.deleteProject(projectName);
             renderProjects(projectManager);
-            clearTodos();
-        })
+            
+            if(todoContainerHeader.textContent === projectName) {
+                clearTodos();
+            }
+        });
 
         //style
         projectElementText.classList.add('text-medium');
