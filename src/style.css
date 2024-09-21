@@ -250,3 +250,16 @@ body {
 #modal-priority {
     grid-row: 3 / 4;
 }
+
+.new-project-btn-icon {
+    width: 24px;
+    height: auto;
+
+}
+
+.new-project-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}

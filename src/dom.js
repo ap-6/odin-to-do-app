@@ -1,4 +1,5 @@
 import deleteIcon from './assets/trash-can-outline.svg';
+import plusIcon from './assets/plus_white.png';
 
 const sidebar = document.getElementById('sidebar');
 const main = document.getElementById('main');
@@ -29,11 +30,23 @@ function renderProjects(projectManager) {
     });
 
     //append "Add project" option
-    const createNewProjectElement = document.createElement('span');
-    createNewProjectElement.textContent = 'Add project';
-    createNewProjectElement.classList.add('project-name');
-    createNewProjectElement.classList.add('text-medium');
-    projectsContainer.appendChild(createNewProjectElement);
+    const newProjectContainer = document.createElement('btn');
+    const newProjectText = document.createElement('span');
+    const newProjectIcon = document.createElement('img');
+
+    newProjectIcon.src = plusIcon;
+    newProjectIcon.alt = 'Plus symbol';
+    newProjectIcon.classList.add('new-project-btn-icon');
+    
+    newProjectText.textContent = 'Add project';
+    
+    newProjectContainer.classList.add('project-name');
+    newProjectContainer.classList.add('new-project-btn');
+    newProjectText.classList.add('text-medium');
+    
+    newProjectContainer.appendChild(newProjectIcon);
+    newProjectContainer.appendChild(newProjectText);
+    projectsContainer.appendChild(newProjectContainer);
 }
 
 function renderTodos(projectName, projectManager) {
