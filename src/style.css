@@ -72,7 +72,8 @@ body {
     padding: 30px;
 }
 
-.project-name-container:hover {
+.project-name-container:hover,
+.add-project-container:hover {
     text-decoration: underline;
     transform: scale(1.05);
     transition: all 0.2s ease;
@@ -87,10 +88,16 @@ body {
 
 }
 
-.project-name-container {
+.project-name-container,
+.add-project-container {
     border-radius: 30px;
     padding: 10px;
     width: auto;
+    cursor: pointer;
+}
+
+.project-name-container {
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -265,4 +272,10 @@ body {
     align-items: center;
     gap: 10px;
     margin-top: 20px;
+}
+
+.project-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
 }

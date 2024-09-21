@@ -31,7 +31,8 @@ function renderProjects(projectManager) {
         //delete button
         const projectDeleteBtn = document.createElement('button');
         const projectDeleteIcon = document.createElement('img');
-        projectDeleteIcon.classList.add('project-btn-icon')
+        projectDeleteIcon.classList.add('project-btn-icon');
+        projectDeleteBtn.classList.add('project-btn');
         projectDeleteBtn.appendChild(projectDeleteIcon);
         projectDeleteIcon.src = deleteProjectIcon;
         projectDeleteIcon.alt = 'Delete button';
@@ -64,7 +65,7 @@ function renderProjects(projectManager) {
     
     newProjectText.textContent = 'Add project';
     
-    newProjectContainer.classList.add('project-name');
+    newProjectContainer.classList.add('add-project-container');
     newProjectContainer.classList.add('new-project-btn');
     newProjectText.classList.add('text-medium');
     
