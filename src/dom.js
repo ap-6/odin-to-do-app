@@ -1,5 +1,6 @@
 import deleteIcon from './assets/trash-can-outline.svg';
 import plusIcon from './assets/plus_white.png';
+import deleteProjectIcon from './assets/close-thick-white.png';
 
 const sidebar = document.getElementById('sidebar');
 const main = document.getElementById('main');
@@ -16,17 +17,40 @@ function renderProjects(projectManager) {
 
     //create element for each project
     Object.keys(projectsFolder).forEach(projectName => {
-        const projectElement = document.createElement('span');
+        const projectElementContainer = document.createElement('span');
         
-        projectElement.textContent = projectName;
-        projectElement.classList.add('project-name');
-        projectElement.classList.add('text-medium');
+        const projectElementText = document.createElement('span');
         
-        projectElement.addEventListener('click', () => {
+        //project name
+        projectElementText.textContent = projectName;
+        
+        projectElementContainer.addEventListener('click', () => {
             renderTodos(projectName, projectManager);
+        });
+
+        //delete button
+        const projectDeleteBtn = document.createElement('button');
+        const projectDeleteIcon = document.createElement('img');
+        projectDeleteIcon.classList.add('project-btn-icon')
+        projectDeleteBtn.appendChild(projectDeleteIcon);
+        projectDeleteIcon.src = deleteProjectIcon;
+        projectDeleteIcon.alt = 'Delete button';
+
+        projectDeleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            projectManager.deleteProject(projectName);
+            renderProjects(projectManager);
         })
 
-        projectsContainer.appendChild(projectElement);
+        //style
+        projectElementText.classList.add('text-medium');
+        projectElementContainer.classList.add('project-name-container');
+        
+        //append children
+        projectElementContainer.appendChild(projectElementText);
+        projectElementContainer.appendChild(projectDeleteBtn);
+
+        projectsContainer.appendChild(projectElementContainer);
     });
 
     //append "Add project" option
@@ -36,7 +60,7 @@ function renderProjects(projectManager) {
 
     newProjectIcon.src = plusIcon;
     newProjectIcon.alt = 'Plus symbol';
-    newProjectIcon.classList.add('new-project-btn-icon');
+    newProjectIcon.classList.add('project-btn-icon');
     
     newProjectText.textContent = 'Add project';
     

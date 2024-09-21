@@ -50,6 +50,12 @@ function createProjectManager() {
         deleteTodoFromProject(projectName, todoId) {
             projectsFolder[projectName].todos = projectsFolder[projectName].todos
                                                     .filter(todo => todo.todoId !== todoId);
+        },
+
+        deleteProject(projectName) {
+            if (projectsFolder[projectName]) {
+                delete projectsFolder[projectName];
+            }
         }
     }
 }

@@ -72,7 +72,7 @@ body {
     padding: 30px;
 }
 
-.project-name:hover {
+.project-name-container:hover {
     text-decoration: underline;
     transform: scale(1.05);
     transition: all 0.2s ease;
@@ -87,10 +87,13 @@ body {
 
 }
 
-.project-name {
+.project-name-container {
     border-radius: 30px;
     padding: 10px;
     width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .todo-element {
@@ -251,7 +254,7 @@ body {
     grid-row: 3 / 4;
 }
 
-.new-project-btn-icon {
+.project-btn-icon {
     width: 24px;
     height: auto;
 
