@@ -42,7 +42,7 @@ function renderProjects(projectManager) {
             projectManager.deleteProject(projectName);
             renderProjects(projectManager);
             
-            if(todoContainerHeader.textContent === projectName) {
+            if (todoContainerHeader.textContent === projectName) {
                 clearTodos();
             }
         });
