@@ -41,6 +41,7 @@ function renderProjects(projectManager) {
             e.stopPropagation();
             projectManager.deleteProject(projectName);
             renderProjects(projectManager);
+            clearTodos();
         })
 
         //style
@@ -72,6 +73,14 @@ function renderProjects(projectManager) {
     newProjectContainer.appendChild(newProjectIcon);
     newProjectContainer.appendChild(newProjectText);
     projectsContainer.appendChild(newProjectContainer);
+}
+
+function clearTodos() {
+    //empty current listing of to-dos
+    while(todoContainer.firstChild) {
+        todoContainer.removeChild(todoContainer.firstChild);
+    }
+    todoContainerHeader.textContent = '';
 }
 
 function renderTodos(projectName, projectManager) {
